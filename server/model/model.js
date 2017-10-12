@@ -5,7 +5,8 @@ var eventSchema = new Schema({
   id : String,
   summary : String,
   created: Number,
-  creat: String
+  creat: String,
+  identifier: String,
 });
 
 module.exports = mongoose.model('Event', eventSchema);

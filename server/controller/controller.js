@@ -6,16 +6,29 @@ const request = require('request');
 let eventController = {
     create: (req,res) => {
         console.log(req.body, 'this is the body!!')
-        let today = Event({ 
-            'summary' : req.body.summary,
-            'created' : req.body.created,
-            'creat' : req.body.creat,
-        }); 
-        Event.create(today,function(err,today){
-        if (err) throw err;
-        console.log('today saved');
-        // res.redirect("/calendar")
-        res.send(today)
+        Event.find({created: req.body.created, creat: req.body.creat}, (err,data) => {
+            console.log('this is data ', data)
+            if(err){return res.send('cant rewrite your old schedule from here')}
+            if(data.length){
+                Event.findOneAndUpdate({created: req.body.created, creat: req.body.creat},{summary: req.body.summary},(err, student) => {
+                    if(err){res.status(404)}
+                    else{res.send(student)}
+                })
+            }
+            else{
+                let today = Event({ 
+                    'summary' : req.body.summary,
+                    'created' : req.body.created,
+                    'creat' : req.body.creat,
+                    'identifier' : req.body.identifier
+                }); 
+                Event.create(today,function(err,today){
+                if (err) throw err;
+                console.log('today saved');
+                // res.redirect("/calendar")
+                res.send(today)
+                })
+            }
         })
     },
     getData: (req,res) => {
@@ -23,45 +36,18 @@ let eventController = {
             res.send(data)
         });
     },
-    // getData: (req, res) => {
-    //     // change URL to any site that you want
-    //     request('/', (error, response, html) => {
-    //       let $ = cheerio.load(html);
-    //       // res.setHeader('Content-Type', 'json');
-    //       let scrappedObj = [];
-    //       $('ul').map(function(i, elem) {
-    //         scrappedObj.push($(this).text());
-    //       });
-    //       // console.log(scrappedObj);
-    //       res.json(scrappedObj);
-    //       if (error) {
-    //         response.send('error');
-    //       }
-    // });
-    // },
-    //   getPata: (req, res, next) => {
-    //     // change URL to any site that you want
-    //     request('https://www.ebay.com/', (error, response, html) => {
-    //       if (error) {
-    //         response.send('error');
-    //       }
-    //       let $ = cheerio.load(html);
-    //       // console.log(next());
-    //       let scrappedObj = [];
-    //       $('a[href*="ebay.com"]').map(function(i, elem) {
-    //         scrappedObj.push($(elem).attr('href'));
-    //       });
-    //       console.log(scrappedObj)
-    //       request(scrappedObj[4], (error, response, html) => {
-    //         let $ = cheerio.load(html);
-    //         $('a[href*="ebay.com"]').map(function(i, elem) {
-    //           scrappedObj.push($(elem).attr('href'));
-    //         });
-    //         return res.json(scrappedObj);
-    //       })
-    //       // res.json(scrappedObj);
-    //     });
-    //   }
+    patch: (req,res) => {
+        console.log('this is req,', req.body)
+        console.log('this is reqparam,', req.params)
+        Event.findOneAndUpdate({identifier: req.params.identifier},{summary: req.body.summary}, (err, student) => {
+            if(err){res.status(404)}
+            else{res.send(student)}
+        })
+    },
+    delete: (req, res) => {
+        // Event.deleteOne({ identifier : req.params.identifier }, (data) => console.log('this is the delete data: ', data))
+        Event.remove({ identifier : req.params.identifier }, (data) => console.log('this is the delete data: ', data))        
+    },
 }
 
 module.exports = eventController

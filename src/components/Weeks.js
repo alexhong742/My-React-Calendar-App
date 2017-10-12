@@ -9,8 +9,8 @@ class Weeks extends Component{
       let week = []
       let num = 7*(this.props.weekNumber-1)
       for(let i = 1; i < 8; i++){
-        let day = <Days key={i} days={this.props.days[i-1]} date={i+num} months={this.props.months} 
-          edittor={this.props.edittor} summaries={this.props.summaries} handlerC={this.props.handlerC}/>
+        let day = <Days key={`Days${i}`} days={this.props.days[i-1]} date={i+num} months={this.props.months} handler={this.props.handler} text={this.props.text}
+          dayID={`day${i}`} edittor={this.props.edittor} summaries={this.props.summaries} handlerC={this.props.handlerC}/>
         week.push(day)
       }
       return(

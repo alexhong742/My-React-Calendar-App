@@ -24,6 +24,9 @@ app.get('/build/bundle.js', (req, res) => {
 
 app.post('/', eventCtrl.create)
 app.get('/redirect', eventCtrl.getData)
+app.get('/patched', eventCtrl.getData)
+app.delete('/:identifier', eventCtrl.delete);
+app.patch('/:identifier', eventCtrl.patch)
 //let the server know where to send requests from certain routes
 
 app.listen(3000, () => {

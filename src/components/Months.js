@@ -10,19 +10,18 @@ class Months extends Component{
       let header = ['Sunday','Monday', 'Tueday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
       for(let i = 1; i < 5; i++){
         let rowID = `row${i}`
-        let weeks = <Weeks key={i} days={this.props.days} weekNumber={i} rowID={rowID} 
+        let weeks = <Weeks key={`Week${i}`} days={this.props.days} weekNumber={i} rowID={i} handler={this.props.handler} text={this.props.text} 
           edittor={this.props.edittor} summaries={this.props.summaries} handlerC={this.props.handlerC} months={this.props.months}/>
         month.push(weeks)
         }
       return(
         <div className="month">
           <table id="simple-board">
-            <thead>
-              <h3>{this.props.months}</h3>
-            </thead>
-            <tbody>
-                <Head header={header} key="blahhah" style={{height: '100px', width: '100px', border: '1px solid grey'}}/>
+            <thead style={{fontWeight: 'bold', fontSize: '22px'}}>{this.props.months}</thead>
+            <tbody key={this.props.key}>
+                <Head header={header} key={this.props.key} style={{height: '100px', width: '100px', border: '1px solid grey'}}/>
               {month}
+              <br/>
             </tbody>
           </table>
         </div>

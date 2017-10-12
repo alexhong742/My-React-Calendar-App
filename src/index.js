@@ -4,4 +4,4 @@ import axios from 'axios'
 import App from './components/App'
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App key='apps'/>, document.getElementById('root'));
