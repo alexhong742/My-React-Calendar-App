@@ -6,12 +6,12 @@ class Head extends Component {
    
     render()  {
         let arr = []
-        for(let i = 0; i < 11; i++){
-            let divsd = <td>{this.props.header[i]}</td>
+        for(let i = 0; i < this.props.header.length; i++){
+            let divsd = <td key={`Week${i}`}>{this.props.header[i]}</td>
             arr.push(divsd)
         }
         return ( 
-            <tr className='head' key='fahfsf'> 
+            <tr className='head' key='fahfsf'>
                 {arr}
             </tr>
         )

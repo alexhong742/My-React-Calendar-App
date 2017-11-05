@@ -13,11 +13,10 @@ class Days extends Component{
         e.preventDefault()
         let data = {summary:this.state.text, created: this.props.date, creat: this.props.months, identifier: `${this.props.months}, ${this.props.date}`}
         axios.post("/", data)
-        this.props.handlerC()
+        .then(() => this.props.handlerC());
     }
 
-    render() {
-        console.log('this is a new test for props.handler', this.props.handler)        
+    render() {     
         return (
         <td style={{height: '100px', width: '100px', border: '1px solid gray'}} className='day'>
            <form style={{margin:'auto',padding:'auto',fontColor:'#EDF2F4'}}>

@@ -18,27 +18,22 @@ class App extends Component {
     toggler = (e) => {
         this.setState({edittor:!this.state.edittor})
     };
-    patch = () => {
-        axios.get('/patched').then((res) => {
+    refresh = () => {
+        axios.get('/schedule').then((res) => {
             this.setState({summaries:res.data})
-        })
-        this.state.edittor = false
-    }
-    delete = () => {
-        axios.get('/redirect').then((res) => {
-            this.setState({summaries:res.data})
+            // console.log('refreshed! ', summaries);
         })
     };
     handlerClick = (e) => {
-        this.setState({edittor:!this.state.edittor})
-        axios.get('/redirect').then((res) => {
+        // we need to make sure that the database creates the record before we switch to the next view
+        // check to see if database is asynchonously being updated after the user is redirected.
+        axios.get('/schedule').then((res) => {
             this.setState({summaries:res.data})
+            this.setState({edittor:!this.state.edittor})
         })
     };
     render()  { 
         document.body.style.backgroundColor = '#65F2FB';
-        console.log(this.state.edittor,"llieieine")
-        console.log(this.state.summaries,"summmssssss")
         let date = new Date();
         let dates = date.getFullYear()
         let year = []
@@ -50,15 +45,18 @@ class App extends Component {
         if(!this.state.edittor){
             document.body.style.backgroundColor = '#014258';
             let arr = [];
-            console.log(this.state.summaries[this.state.summaries.length-1])
+            // console.log(this.state.summaries[this.state.summaries.length-1])
             for(let i = 0; i < this.state.summaries.length; i++){
                 let summ = <Sum key={`Sum${i}`} number={i} sum={this.state.summaries} handler={this.handler} id={`id${i}`}
-                 patch={this.patch} delete={this.delete}/>
+                 refresh={this.refresh}/>
                 arr.push(summ)
             }
             return(
                 <div style={{backgroundColor:'#014258', color:'#FFF000', margin:'auto',}}>
-                    <h1 style={{textAlign: 'center', alignSelf: 'stretch'}}>ALEX'S CALENDAR <br/> {dates}</h1>
+                    <h1 style={{textAlign: 'center', alignSelf: 'stretch'}}>
+                    ALEX'S CALENDAR <br/> 
+                    <input type='submit' value='Back to Calendar' float='right' onClick={this.toggler}/> <br/>
+                    {dates}</h1>
                    <div style={{alignSelf: 'stretch', margin: 'auto', position:'center', display: 'inlineBlock',
                     height: 'flex', width: '300px', border: '3px solid black'}}> {arr} </div>
                 </div>
@@ -66,11 +64,9 @@ class App extends Component {
         } else{
         return ( 
             <div className='yeard'> 
-            <h1>ALEX'S CALENDAR</h1>
-            <h1>{dates}</h1>
+            <h1>ALEX'S CALENDAR <br/> {dates} <br/> <input type='submit' value='View Schedule' float='right' onClick={this.handlerClick}/></h1>
             <br/>
                 {year}
-                <input type='submit' value='View Schedule' onClick={this.toggler}/>
             </div>
         )
     }
