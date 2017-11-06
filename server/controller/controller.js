@@ -37,7 +37,7 @@ let eventController = {
     },
     patch: (req,res) => {
         // console.log('this is req,', req.body)
-        // console.log('this is reqparam,', req.params)
+        console.log('this is reqparam,', req.params)
         Event.findOneAndUpdate({identifier: req.params.identifier},{summary: req.body.summary}, (err, student) => {
             if(err){res.status(404)}
             else{res.send(student)}
