@@ -7,6 +7,8 @@ const mongoose = require('mongoose');
 const bodyParse = require('body-parser');
 const eventCtrl = require('./controller/controller.js');
 
+const port = process.env.PORT || 3000;
+
 mongoose.connect('mongodb://alexhong742:3edd19f7@ds151433.mlab.com:51433/alexhongcalendar');
 mongoose.connection.once('open', () => {
     console.log('Connected with MongoDB ORM - mongodb-orm');
@@ -24,6 +26,6 @@ app.delete('/:identifier', eventCtrl.delete);
 app.patch('/:identifier', eventCtrl.patch);
 //let the server know where to send requests from certain routes
 
-app.listen(3000, () => {
-    console.log('now listening on 3000!');
+app.listen(port, () => {
+    console.log(`now listening on ${port}!`);
 });
