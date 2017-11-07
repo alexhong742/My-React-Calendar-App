@@ -17,6 +17,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../index.html'));
 });
 
+
 app.post('/', eventCtrl.create);
 app.get('/schedule', eventCtrl.getData);
 app.delete('/:identifier', eventCtrl.delete);
