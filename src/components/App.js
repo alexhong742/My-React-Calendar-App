@@ -20,7 +20,7 @@ class App extends Component {
     };
     refresh = () => {
         axios.get('/schedule').then((res) => {
-            this.setState({summaries:res.data})
+            this.setState({summaries:res.data});
             // console.log('refreshed! ', summaries);
         })
     };
@@ -28,15 +28,15 @@ class App extends Component {
         // we need to make sure that the database creates the record before we switch to the next view
         // check to see if database is asynchonously being updated after the user is redirected.
         axios.get('/schedule').then((res) => {
-            this.setState({summaries:res.data})
-            this.setState({edittor:!this.state.edittor})
-        })
+            this.setState({summaries:res.data});
+            this.setState({edittor:!this.state.edittor});
+        });
     };
     render()  { 
         document.body.style.backgroundColor = '#65F2FB';
         let date = new Date();
-        let dates = date.getFullYear()
-        let year = []
+        let dates = date.getFullYear();
+        let year = [];
         for(let i = 1; i < 13; i++){
             let months = <Months key={`Month${i}`} days={this.state.days} months={this.state.months[i-1]} date={date} text={this.state.text} handler={this.handler}
              edittor={this.state.edittor} summaries={this.state.summaries} handlerC={this.handlerClick}/>
@@ -62,14 +62,14 @@ class App extends Component {
                 </div>
             )
         } else{
-        return ( 
-            <div className='yeard'> 
-            <h1>ALEX'S CALENDAR <br/> {dates} <br/> <input type='submit' value='View Schedule' float='right' onClick={this.handlerClick}/></h1>
-            <br/>
-                {year}
-            </div>
-        )
+            return ( 
+                <div className='yeard'> 
+                <h1>ALEX'S CALENDAR <br/> {dates} <br/> <input type='submit' value='View Schedule' float='right' onClick={this.handlerClick}/></h1>
+                <br/>
+                    {year}
+                </div>
+            );
+        }
     }
-}
-}
+};
 export default App
