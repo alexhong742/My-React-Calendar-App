@@ -21,7 +21,7 @@ class Days extends Component{
         <td style={{height: '100px', width: '100px', border: '1px solid gray'}} className='day'>
            <form style={{margin:'auto',padding:'auto',fontColor:'#EDF2F4'}}>
                 <textarea type='text' name='event' placeholder={this.props.date} value={this.state.text} onChange={this.handlerChange} 
-                style={{color:'#EDF2F4', backgroundColor:'#014258', margin:'auto', height:'100px'}}/><br/>
+                style={{color:'#EDF2F4', backgroundColor:'#014258', margin:'auto', height:'100px', resize:'none'}}/><br/>
                 <input type='submit' value='Submit' onClick={this.handler}/>
             </form>
         </td>
