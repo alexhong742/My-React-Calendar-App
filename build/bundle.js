@@ -10502,7 +10502,8 @@ var App = function (_Component) {
             months: ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'Semptember', 'October', 'November', 'December'],
             summaries: [],
             text: "",
-            edittor: true
+            edittor: true,
+            appWidth: "90%"
         }, _this.handler = function (e) {
             _this.setState({ text: e.target.value });
         }, _this.toggler = function (e) {
@@ -10523,8 +10524,20 @@ var App = function (_Component) {
     }
 
     _createClass(App, [{
+        key: 'checkMobile',
+        value: function checkMobile() {
+            // console.log(screen) in the browser console will give you the appropriate media query
+            // height/width values that you need
+            if (screen.width < 750) {
+                return true;
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
+            if (!this.checkMobile()) {
+                this.state.appWidth = '75%';
+            }
             document.body.style.backgroundColor = '#65F2FB';
             var date = new Date();
             var dates = date.getFullYear();
@@ -10568,10 +10581,10 @@ var App = function (_Component) {
             } else {
                 return _react2.default.createElement(
                     'div',
-                    { className: 'yeard' },
+                    { className: 'yeard', style: { margin: 'auto' } },
                     _react2.default.createElement(
                         'h1',
-                        null,
+                        { style: { textAlign: 'center', alignSelf: 'stretch' } },
                         'ALEX\'S CALENDAR ',
                         _react2.default.createElement('br', null),
                         ' ',
@@ -10582,7 +10595,13 @@ var App = function (_Component) {
                         _react2.default.createElement('input', { type: 'submit', value: 'View Schedule', float: 'right', onClick: this.handlerClick })
                     ),
                     _react2.default.createElement('br', null),
-                    year
+                    _react2.default.createElement(
+                        'div',
+                        { style: { border: '12px solid black', width: this.state.appWidth, 'overflow-y': 'auto', height: '70%', margin: 'auto' } },
+                        ' ',
+                        year,
+                        ' '
+                    )
                 );
             }
         }

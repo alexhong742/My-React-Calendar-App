@@ -11,7 +11,15 @@ class App extends Component {
         summaries: [],
         text: "",
         edittor: true,
+        appWidth: "90%"
     }
+    checkMobile() {
+		// console.log(screen) in the browser console will give you the appropriate media query
+		// height/width values that you need
+		if(screen.width < 750){
+			return true;
+		}
+	};
     handler = (e) => {
         this.setState({text:e.target.value})
     };
@@ -32,7 +40,10 @@ class App extends Component {
             this.setState({edittor:!this.state.edittor});
         });
     };
-    render()  { 
+    render()  {
+        if (!this.checkMobile()) {
+            this.state.appWidth = '75%'
+        }
         document.body.style.backgroundColor = '#65F2FB';
         let date = new Date();
         let dates = date.getFullYear();
@@ -63,10 +74,10 @@ class App extends Component {
             )
         } else{
             return ( 
-                <div className='yeard'> 
-                <h1>ALEX'S CALENDAR <br/> {dates} <br/> <input type='submit' value='View Schedule' float='right' onClick={this.handlerClick}/></h1>
+                <div className='yeard' style={{margin:'auto'}}> 
+                <h1 style={{textAlign: 'center', alignSelf: 'stretch'}}>ALEX'S CALENDAR <br/> {dates} <br/> <input type='submit' value='View Schedule' float='right' onClick={this.handlerClick}/></h1>
                 <br/>
-                    {year}
+                <div style={{border: '12px solid black', width:this.state.appWidth, 'overflow-y': 'auto', height: '70%', margin:'auto'}}> {year} </div>
                 </div>
             );
         }
