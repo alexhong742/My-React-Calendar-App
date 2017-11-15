@@ -75,9 +75,11 @@ class App extends Component {
         } else{
             return ( 
                 <div className='yeard' style={{margin:'auto'}}> 
-                <h1 style={{textAlign: 'center', alignSelf: 'stretch'}}>ALEX'S CALENDAR <br/> {dates} <br/> <input type='submit' value='View Schedule' float='right' onClick={this.handlerClick}/></h1>
+                    <h1 style={{textAlign: 'center', alignSelf: 'stretch'}}>ALEX'S CALENDAR <br/> {dates} <br/> <input type='submit' value='View Schedule' float='right' onClick={this.handlerClick}/></h1>
                 <br/>
-                <div style={{border: '12px solid black', width:this.state.appWidth, 'overflow-y': 'auto', height: '70%', margin:'auto'}}> {year} </div>
+                    <div style={{border: '6px solid black', width:this.state.appWidth, 'overflow-y': 'auto', height: '70%', margin:'auto'}}>
+                    {year}
+                    </div>
                 </div>
             );
         }

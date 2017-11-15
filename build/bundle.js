@@ -10597,10 +10597,8 @@ var App = function (_Component) {
                     _react2.default.createElement('br', null),
                     _react2.default.createElement(
                         'div',
-                        { style: { border: '12px solid black', width: this.state.appWidth, 'overflow-y': 'auto', height: '70%', margin: 'auto' } },
-                        ' ',
-                        year,
-                        ' '
+                        { style: { border: '6px solid black', width: this.state.appWidth, 'overflow-y': 'auto', height: '70%', margin: 'auto' } },
+                        year
                     )
                 );
             }
