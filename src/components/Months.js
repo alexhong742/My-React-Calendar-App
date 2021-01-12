@@ -8,9 +8,9 @@ class Months extends Component{
     render(){  
       let month = []
       let header = ['Sunday','Monday', 'Tueday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-      for(let i = 1; i < 5; i++){
+      for(let i = 1; i < 6; i++){
         let rowID = `row${i}`
-        let weeks = <Weeks key={`Week${i}`} days={this.props.days} weekNumber={i} rowID={i} handler={this.props.handler} text={this.props.text} 
+        let weeks = <Weeks key={`Week${i}`} days={this.props.days} numberOfDays={this.props.numberOfDays} weekNumber={i} rowID={i} handler={this.props.handler} text={this.props.text} 
           edittor={this.props.edittor} summaries={this.props.summaries} handlerC={this.props.handlerC} months={this.props.months}/>
         month.push(weeks)
         }

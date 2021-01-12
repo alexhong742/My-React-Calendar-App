@@ -6,8 +6,9 @@ import Days from './days'
 import Sum from './summaries'
 class App extends Component {
     state = {
-        days : ['Sunday','Monday', 'Tueday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        days : ['Sunday', 'Monday', 'Tueday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         months: ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'Semptember', 'October', 'November', 'December'],
+        numberOfDays: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
         summaries: [],
         text: "",
         edittor: true,
@@ -50,7 +51,7 @@ class App extends Component {
         let year = [];
         for(let i = 1; i < 13; i++){
             let months = <Months key={`Month${i}`} days={this.state.days} months={this.state.months[i-1]} date={date} text={this.state.text} handler={this.handler}
-             edittor={this.state.edittor} summaries={this.state.summaries} handlerC={this.handlerClick}/>
+             edittor={this.state.edittor} summaries={this.state.summaries} handlerC={this.handlerClick} numberOfDays={this.state.numberOfDays[i-1]}/>
             year.push(months)
         }
         if(!this.state.edittor){

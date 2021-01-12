@@ -9,7 +9,8 @@ const eventCtrl = require('./controller/controller.js');
 
 const port = process.env.PORT || 3000;
 
-mongoose.connect('mongodb://alexhong742:3edd19f7@ds151433.mlab.com:51433/alexhongcalendar');
+mongoose.connect("mongodb+srv://alexhong742:3edd19f7@alexhongcalendar.0n74s.mongodb.net/alexhongcalendar?retryWrites=true&w=majority");
+
 mongoose.connection.once('open', () => {
     console.log('Connected with MongoDB ORM - mongodb-orm');
 });
