@@ -1,9 +1,10 @@
-import React, {Component} from 'react'
+import React, {Component, useState} from 'react'
 import ReactDOM from 'react-dom'
 import Months from "./Months"
 import axios from "axios"
 import Days from './days'
 import Sum from './summaries'
+import Calendar from 'react-calendar';
 class App extends Component {
     state = {
         days : ['Sunday', 'Monday', 'Tueday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
@@ -40,8 +41,17 @@ class App extends Component {
             this.setState({summaries:res.data});
             this.setState({edittor:!this.state.edittor});
         });
-    };
-    render()  {
+    }; 
+    render() {
+        // const [value, onChange] = useState(new Date());
+        // return (
+        //     <div>
+        //     <Calendar
+        //         onChange={onChange}
+        //         value={value}
+        //     />
+        //     </div>
+        // );
         if (!this.checkMobile()) {
             this.state.appWidth = '75%'
         }
